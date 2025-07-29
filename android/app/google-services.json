@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "237049559842",
+    "project_id": "vocabmaster-learning",
+    "storage_bucket": "vocabmaster-learning.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237049559842:android:c9ad9032fe1fcd764fc37b",
+        "android_client_info": {
+          "package_name": "com.example.vocabmaster"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzDHuaf9tZtV8mVxYqw4xM5nTyOIB3_Bk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
