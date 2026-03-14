@@ -4,12 +4,9 @@ import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
 import '../models/word_model.dart';
+import 'api_config.dart';
 
 class WordService {
-  static const String _baseUrl = 'https://wordsapiv1.p.rapidapi.com/words/';
-  static const String _apiKey = '3caf06bd92msh3d19c14b6ffe394p1d76aejsnc7fbd4fa36ef'; // Replace with your actual key
-  static const String _apiHost = 'wordsapiv1.p.rapidapi.com';
-  
   final Uuid _uuid = const Uuid();
   
   // Fallback word list for when API is not available
@@ -88,11 +85,15 @@ class WordService {
   }
 
   Future<WordModel?> _fetchFromAPI(String userId) async {
+    if (!ApiConfig.hasRapidApiKey) {
+      return null;
+    }
+
     final response = await http.get(
-      Uri.parse('${_baseUrl}?random=true'),
+      Uri.parse('${ApiConfig.wordsApiBaseUrl}?random=true'),
       headers: {
-        'X-RapidAPI-Key': _apiKey,
-        'X-RapidAPI-Host': _apiHost,
+        'X-RapidAPI-Key': ApiConfig.rapidApiKey,
+        'X-RapidAPI-Host': ApiConfig.wordsApiHost,
       },
     );
 

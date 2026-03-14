@@ -1,2 +1,97 @@
 # VocabMaster
-VocabMaster is a mobile educational app built with Flutter, designed to help users learn advanced English vocabulary. It offers an interactive, personalized, and auditory learning experience, ideal for individuals or couples looking to expand their vocabulary in a modern and engaging way.
+
+Flutter vocabulary-learning application focused on advanced English study with local persistence, user profiles, favorites, streak tracking, and text-to-speech support.
+
+## What It Does
+
+- creates a local user profile experience
+- stores learning progress with Hive
+- presents vocabulary cards with definitions and study context
+- tracks favorites and streaks
+- supports text-to-speech playback
+- runs across Android, iOS, web, desktop, and Flutter-supported platforms
+
+## Current Implementation
+
+Key implemented areas visible in the codebase:
+- local authentication / profile wrapper
+- vocabulary learning screen
+- favorites screen
+- Hive-backed persistence for users, words, and settings
+- Riverpod-based app bootstrapping
+- Google Fonts styling
+- Flutter test scaffold
+
+## Tech Stack
+
+- Flutter
+- Dart
+- Riverpod
+- Hive / Hive Flutter
+- Shared Preferences
+- flutter_tts
+
+## Repository Layout
+
+```text
+VocabMaster-updated/
+├── lib/
+│   ├── main.dart
+│   ├── models/
+│   ├── screens/
+│   ├── services/
+│   └── widgets/
+├── android/
+├── ios/
+├── web/
+├── windows/
+├── linux/
+├── macos/
+└── test/
+```
+
+## Local Setup
+
+```bash
+flutter pub get
+flutter run
+```
+
+If you want live dictionary API integration, provide the RapidAPI key at runtime instead of committing it:
+
+```bash
+flutter run --dart-define=RAPIDAPI_KEY=your_key_here
+```
+
+Run tests with:
+
+```bash
+flutter test
+```
+
+## Notes For Reviewers
+
+- this version is local-first and does not depend on a cloud backend
+- project-specific Firebase configuration was removed from the repository to keep it portable
+- state and user progress are stored locally through Hive
+- dictionary API access is optional and configured via `--dart-define`, not hardcoded in the repo
+
+## Privacy
+
+- user progress is stored locally through Hive
+- no Firebase configuration is required in the public repository
+- external dictionary API access is optional and only enabled when you explicitly provide a runtime key
+
+## Known Boundaries
+
+- `flutter` is required locally to run and test the app
+- the default test coverage is lightweight
+- Android package IDs and signing are still in starter-project form
+
+## Suggested Demo Flow
+
+1. Launch the app and create or enter a local profile.
+2. Open the main learning screen.
+3. Mark a word as favorite.
+4. Play pronunciation via TTS.
+5. Review the favorites screen and observe persisted progress.

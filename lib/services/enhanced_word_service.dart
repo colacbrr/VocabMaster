@@ -1,15 +1,11 @@
-// TODO Implement this library.// lib/services/enhanced_word_service.dart
 import 'dart:convert';
 import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
 import '../models/word_model.dart';
+import 'api_config.dart';
 
 class EnhancedWordService {
-  static const String _baseUrl = 'https://wordsapiv1.p.rapidapi.com/words/';
-  static const String _apiKey = '3caf06bd92msh3d19c14b6ffe394p1d76aejsnc7fbd4fa36ef'; // Replace with actual key if you have one
-  static const String _apiHost = 'wordsapiv1.p.rapidapi.com';
-  
   final Uuid _uuid = const Uuid();
   
   // Enhanced vocabulary words organized by difficulty
@@ -114,16 +110,16 @@ class EnhancedWordService {
 
   // Try API first, fallback to local words
   Future<WordModel?> _fetchFromAPI(String userId) async {
-    if (_apiKey == 'YOUR_RAPIDAPI_KEY') {
-      return null; // Skip API if no key is set
+    if (!ApiConfig.hasRapidApiKey) {
+      return null;
     }
 
     try {
       final response = await http.get(
-        Uri.parse('${_baseUrl}?random=true'),
+        Uri.parse('${ApiConfig.wordsApiBaseUrl}?random=true'),
         headers: {
-          'X-RapidAPI-Key': _apiKey,
-          'X-RapidAPI-Host': _apiHost,
+          'X-RapidAPI-Key': ApiConfig.rapidApiKey,
+          'X-RapidAPI-Host': ApiConfig.wordsApiHost,
         },
       );
 

@@ -43,3 +43,10 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Local Flutter metadata
+.metadata
+
+# Cloud config kept out of the public repo
+firebase.json
+android/app/google-services.json
