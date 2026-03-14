@@ -12,13 +12,23 @@ class HiveService {
     await Hive.initFlutter();
     
     // Register adapters
-    Hive.registerAdapter(UserProfileAdapter());
-    Hive.registerAdapter(WordModelAdapter());
+    if (!Hive.isAdapterRegistered(0)) {
+      Hive.registerAdapter(UserProfileAdapter());
+    }
+    if (!Hive.isAdapterRegistered(1)) {
+      Hive.registerAdapter(WordModelAdapter());
+    }
     
     // Open boxes
-    await Hive.openBox<UserProfile>(_userProfileBox);
-    await Hive.openBox<WordModel>(_wordsBox);
-    await Hive.openBox(_settingsBox);
+    if (!Hive.isBoxOpen(_userProfileBox)) {
+      await Hive.openBox<UserProfile>(_userProfileBox);
+    }
+    if (!Hive.isBoxOpen(_wordsBox)) {
+      await Hive.openBox<WordModel>(_wordsBox);
+    }
+    if (!Hive.isBoxOpen(_settingsBox)) {
+      await Hive.openBox(_settingsBox);
+    }
   }
 
   // User Profile Operations
@@ -79,5 +89,9 @@ class HiveService {
     await Hive.box<UserProfile>(_userProfileBox).clear();
     await Hive.box<WordModel>(_wordsBox).clear();
     await Hive.box(_settingsBox).clear();
+  }
+
+  Future<void> clearStudyData() async {
+    await Hive.box<WordModel>(_wordsBox).clear();
   }
 }

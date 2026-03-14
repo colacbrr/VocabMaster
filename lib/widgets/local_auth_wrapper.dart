@@ -1,5 +1,6 @@
 // lib/widgets/local_auth_wrapper.dart
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../services/hive_service.dart';
 import '../models/user_model.dart';
@@ -32,7 +33,7 @@ class _LocalAuthWrapperState extends State<LocalAuthWrapper> {
         _isLoading = false;
       });
     } catch (e) {
-      print('Error checking user: $e');
+      debugPrint('Error checking user: $e');
       setState(() => _isLoading = false);
     }
   }

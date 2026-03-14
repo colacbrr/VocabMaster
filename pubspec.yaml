@@ -1,5 +1,7 @@
 name: vocabmaster
-description: A vocabulary learning app
+description: A local-first Flutter vocabulary trainer with Hive persistence and optional dictionary API integration
+homepage: https://github.com/colacbrr/VocabMaster
+repository: https://github.com/colacbrr/VocabMaster
 
 publish_to: 'none'
 

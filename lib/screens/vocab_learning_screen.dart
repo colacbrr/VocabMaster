@@ -1,5 +1,6 @@
 // lib/screens/vocab_learning_screen.dart
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -60,7 +61,7 @@ class _VocabLearningScreenState extends State<VocabLearningScreen> {
     
     _flutterTts.setErrorHandler((msg) {
       setState(() => _isSpeaking = false);
-      print('TTS Error: $msg');
+      debugPrint('TTS error: $msg');
     });
   }
 
@@ -93,7 +94,7 @@ class _VocabLearningScreenState extends State<VocabLearningScreen> {
         _isLoading = false;
       });
     } catch (e) {
-      print('Error loading words: $e');
+      debugPrint('Error loading words: $e');
       setState(() => _isLoading = false);
       
       // Show error message

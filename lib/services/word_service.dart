@@ -1,6 +1,7 @@
 // lib/services/word_service.dart
 import 'dart:convert';
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
 import '../models/word_model.dart';
@@ -170,7 +171,7 @@ class WordService {
           words.add(word);
         }
       } catch (e) {
-        print('Error fetching word $i: $e');
+        debugPrint('Error fetching word $i: $e');
         // Continue to next word
       }
       

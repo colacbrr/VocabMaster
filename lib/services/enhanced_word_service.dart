@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
 import '../models/word_model.dart';
@@ -151,7 +152,7 @@ class EnhancedWordService {
         }
       }
     } catch (e) {
-      print('API Error: $e');
+      debugPrint('API error: $e');
     }
     return null;
   }

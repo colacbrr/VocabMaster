@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
 import '../models/word_model.dart';
@@ -54,7 +55,7 @@ class WordApiService {
         }
       }
     } catch (e) {
-      print('Error fetching word: $e');
+      debugPrint('Error fetching word: $e');
     }
     return null;
   }

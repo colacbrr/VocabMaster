@@ -1,7 +1,9 @@
 // lib/main.dart - WITH HIVE USER PROFILES
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'app_config.dart';
 import 'services/hive_service.dart';
 import 'widgets/local_auth_wrapper.dart';
 
@@ -11,9 +13,9 @@ void main() async {
   try {
     // Initialize Hive
     await HiveService.initHive();
-    print('✅ Hive initialized successfully');
+    debugPrint('Hive initialized successfully');
   } catch (e) {
-    print('❌ Initialization error: $e');
+    debugPrint('Initialization error: $e');
   }
   
   runApp(
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'VocabMaster',
+      title: AppConfig.appName,
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.deepPurple,

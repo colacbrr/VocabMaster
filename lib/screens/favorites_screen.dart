@@ -1,10 +1,12 @@
 // lib/screens/favorites_screen.dart
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/word_model.dart';
 import '../models/user_model.dart';
 import '../services/hive_service.dart';
+import '../utils/word_filters.dart';
 
 class FavoritesScreen extends StatefulWidget {
   final UserProfile user;
@@ -65,21 +67,14 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         _isLoading = false;
       });
     } catch (e) {
-      print('Error loading favorites: $e');
+      debugPrint('Error loading favorites: $e');
       setState(() => _isLoading = false);
     }
   }
 
   void _filterFavorites(String query) {
     setState(() {
-      if (query.isEmpty) {
-        _filteredFavorites = _allFavorites;
-      } else {
-        _filteredFavorites = _allFavorites.where((word) {
-          return word.word.toLowerCase().contains(query.toLowerCase()) ||
-                 word.definition.toLowerCase().contains(query.toLowerCase());
-        }).toList();
-      }
+      _filteredFavorites = filterWords(_allFavorites, query);
     });
   }
 
